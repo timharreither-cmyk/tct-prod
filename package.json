@@ -1,0 +1,28 @@
+{
+  "name": "tct-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"node server.js\"",
+    "server": "node server.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@vueuse/core": "^14.2.1",
+    "@vueuse/head": "^2.0.0",
+    "express": "^4.21.2",
+    "marked": "^18.0.2",
+    "multer": "^1.4.5-lts.1",
+    "vue": "^3.5.32",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "concurrently": "^9.1.2",
+    "vite": "^8.0.10"
+  }
+}
