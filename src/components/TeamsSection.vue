@@ -3,8 +3,8 @@ import imgTeam1 from '../assets/club-images/aa064eebff59ade73e4709f3913d5426e34f
 import imgTeam2 from '../assets/club-images/4985a81dab06543f9c3a2569b5a4f20a144f425a.jpg'
 
 const teams = [
-  { id: 1, name: 'Damen 1', league: 'NÖ Landesliga', description: 'Unser erstes Damenteam kämpft in der Niederösterreichischen Landesliga um Punkte und Aufstieg.' },
-  { id: 2, name: 'Herren 1', league: 'NÖ Landesliga', description: 'Flaggschiff des Vereins – das erste Herrenteam spielt auf höchstem regionalen Niveau.' },
+  { id: 1, name: 'Herren 1', league: 'NÖ Landesliga', description: 'Flaggschiff des Vereins – das erste Herrenteam spielt auf höchstem regionalen Niveau.' },
+  { id: 2, name: 'Damen 1', league: 'Kreisliga', description: 'Unser erstes Damenteam kämpft in der Kreisliga um Punkte und Aufstieg.' },
   { id: 3, name: 'Herren 2', league: 'NÖ Landesliga', description: 'Das zweite Herrenteam mit starker Besetzung und ambitionierten Saisonzielen.' },
   { id: 4, name: 'Herren 3', league: 'Kreisliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.' },
   { id: 5, name: 'Herren 4', league: 'Kreisliga', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.' },

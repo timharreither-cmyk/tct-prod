@@ -1,7 +1,7 @@
 <script setup>
 import imgOutdoor from '../assets/club-images/27a736696d930a0ebada09fc03f3f6c411e04f51.jpg'
 import imgHall from '../assets/club-images/036334c08b2d997cfeae95be364676f9baad1380.jpg'
-import imgClubhouse from '../assets/club-images/66407aec948f3c1ab2f82afa13ec7ae65c4e82a2.jpg'
+import imgClubhouse from '../assets/club-images/7d650a5e6d988d9b96465896254d5122f3cf26b1.JPG'
 
 const facilities = [
   {
