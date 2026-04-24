@@ -111,8 +111,8 @@ const navLinks = [
 
 .nav__logo {
   display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
 }
 
