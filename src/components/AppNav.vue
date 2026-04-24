@@ -28,7 +28,7 @@ const navLinks = [
   <header class="nav" :class="{ 'nav--scrolled': scrolled, 'nav--open': menuOpen }">
     <div class="nav__inner">
       <RouterLink to="/" class="nav__logo" @click="menuOpen = false">
-        <span class="nav__logo-abbr">TCT</span>
+        <img src="/TCT_Logo.jpg" alt="TCT Tennisclub Tulln" class="nav__logo-img" />
         <span class="nav__logo-full">Tennisclub Tulln</span>
       </RouterLink>
 
@@ -116,17 +116,18 @@ const navLinks = [
   text-decoration: none;
 }
 
-.nav__logo-abbr {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.02em;
+.nav__logo-img {
+  height: 38px;
+  width: 38px;
+  object-fit: contain;
+  border-radius: 4px;
+  opacity: 0.92;
+  transition: opacity var(--transition);
 }
 
-.nav--scrolled .nav__logo-abbr,
-.nav--open .nav__logo-abbr {
-  color: var(--blue);
+.nav--scrolled .nav__logo-img,
+.nav--open .nav__logo-img {
+  opacity: 1;
 }
 
 .nav__logo-full {

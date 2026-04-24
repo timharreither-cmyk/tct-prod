@@ -6,8 +6,8 @@ const teams = [
   { id: 1, name: 'Damen 1', league: 'NÖ Landesliga', description: 'Unser erstes Damenteam kämpft in der Niederösterreichischen Landesliga um Punkte und Aufstieg.' },
   { id: 2, name: 'Herren 1', league: 'NÖ Landesliga', description: 'Flaggschiff des Vereins – das erste Herrenteam spielt auf höchstem regionalen Niveau.' },
   { id: 3, name: 'Herren 2', league: 'NÖ Landesliga', description: 'Das zweite Herrenteam mit starker Besetzung und ambitionierten Saisonzielen.' },
-  { id: 4, name: 'Herren 3', league: 'Bezirksliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.' },
-  { id: 5, name: 'Herren 4', league: 'Bezirksklasse', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.' },
+  { id: 4, name: 'Herren 3', league: 'Kreisliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.' },
+  { id: 5, name: 'Herren 4', league: 'Kreisliga', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.' },
 ]
 </script>
 
