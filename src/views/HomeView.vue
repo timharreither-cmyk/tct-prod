@@ -1,5 +1,6 @@
 <script setup>
 import HeroSection from '../components/HeroSection.vue'
+import WelcomeSection from '../components/WelcomeSection.vue'
 import NewsSection from '../components/NewsSection.vue'
 import EventsSection from '../components/EventsSection.vue'
 import FacilitiesSection from '../components/FacilitiesSection.vue'
@@ -13,6 +14,7 @@ import ContactSection from '../components/ContactSection.vue'
 
 <template>
   <HeroSection />
+  <WelcomeSection />
   <NewsSection />
   <EventsSection />
   <FacilitiesSection />

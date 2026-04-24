@@ -4,9 +4,9 @@ import img2 from '../assets/club-images/7543246b68ef924572250e46ee747020720ef66f
 import img3 from '../assets/club-images/27a736696d930a0ebada09fc03f3f6c411e04f51.jpg'
 
 const photos = [
-  { src: img1, alt: 'TCT Vereinsleitung' },
-  { src: img2, alt: 'TCT Anlage Luftaufnahme' },
-  { src: img3, alt: 'TCT Sandplätze' },
+  { src: img1, alt: 'TCT Vereinsleitung', position: 'top' },
+  { src: img2, alt: 'TCT Anlage Luftaufnahme', position: 'center' },
+  { src: img3, alt: 'TCT Sandplätze', position: 'center' },
 ]
 </script>
 
@@ -14,7 +14,7 @@ const photos = [
   <section class="gallery">
     <div class="gallery__strip">
       <div v-for="(p, i) in photos" :key="i" class="gallery__item">
-        <img :src="p.src" :alt="p.alt" loading="lazy" />
+        <img :src="p.src" :alt="p.alt" :style="{ objectPosition: p.position }" loading="lazy" />
         <span class="gallery__caption">{{ p.alt }}</span>
       </div>
     </div>

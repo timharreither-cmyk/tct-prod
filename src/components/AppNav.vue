@@ -15,6 +15,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 const navLinks = [
   { label: 'News', to: '/news' },
+  { label: 'Verein', to: '/verein' },
   { label: 'Anlage', to: '/#anlage' },
   { label: 'Teams', to: '/#teams' },
   { label: 'Mitgliedschaft', to: '/#mitgliedschaft' },
