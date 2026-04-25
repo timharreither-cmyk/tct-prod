@@ -24,6 +24,18 @@ export async function savePost(data) {
   return post
 }
 
+export async function updatePost(id, data) {
+  const res = await fetch(`/api/posts/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw new Error('Aktualisieren fehlgeschlagen')
+  const updated = await res.json()
+  adminPosts.value = adminPosts.value.map(p => (p.id === id ? updated : p))
+  return updated
+}
+
 export async function deletePost(id) {
   await fetch(`/api/posts/${id}`, { method: 'DELETE' })
   adminPosts.value = adminPosts.value.filter(p => p.id !== id)

@@ -1,33 +1,13 @@
 <script setup>
-const events = [
-  {
-    id: 1,
-    date: { day: '25', month: 'Apr', year: '2026' },
-    title: 'Season Opening 2026',
-    description: 'Der traditionelle Saisonauftakt mit Generationen-Doppel, Catering und gemütlichem Beisammensein für alle Mitglieder und Interessierte.',
-    time: '10:00 Uhr',
-    location: 'TC Tulln Anlage',
-    tag: 'Event',
-  },
-  {
-    id: 2,
-    date: { day: '01', month: 'Mai', year: '2026' },
-    title: 'Eröffnung: Neues Clublokal',
-    description: 'Grand Opening des neuen Clublokals unter Betreiber Ellwood Entlicher mit amerikanischem Sports Bar Konzept.',
-    time: '18:00 Uhr',
-    location: 'Clubhaus TC Tulln',
-    tag: 'Clublokal',
-  },
-  {
-    id: 3,
-    date: { day: 'Jun', month: '2026', year: '' },
-    title: 'Vereinsmeisterschaft Sommer',
-    description: 'Die jährliche Vereinsmeisterschaft aller Klassen – von Jugend bis Senioren. Anmeldung über die Clubverwaltung.',
-    time: 'TBA',
-    location: 'TC Tulln Anlage',
-    tag: 'Turnier',
-  },
-]
+import { computed } from 'vue'
+import { getUpcomingEvents, formatEventDate } from '../data/events.js'
+
+const events = computed(() =>
+  getUpcomingEvents(6).map(e => ({
+    ...e,
+    dateParts: formatEventDate(e.date),
+  }))
+)
 </script>
 
 <template>
@@ -39,22 +19,22 @@ const events = [
         <h2 class="section__title">Veranstaltungen<br><em>& Events</em></h2>
       </div>
 
-      <div class="events__list">
+      <div v-if="events.length" class="events__list">
         <article v-for="event in events" :key="event.id" class="event-item">
           <div class="event-item__date">
-            <span class="event-item__day">{{ event.date.day }}</span>
-            <span class="event-item__month">{{ event.date.month }}</span>
-            <span v-if="event.date.year" class="event-item__year">{{ event.date.year }}</span>
+            <span class="event-item__day">{{ event.dateParts.day }}</span>
+            <span class="event-item__month">{{ event.dateParts.month }}</span>
+            <span class="event-item__year">{{ event.dateParts.year }}</span>
           </div>
           <div class="event-item__body">
             <div class="event-item__top">
               <span class="tag">{{ event.tag }}</span>
               <div class="event-item__details">
-                <span>
+                <span v-if="event.time">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                   {{ event.time }}
                 </span>
-                <span>
+                <span v-if="event.location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   {{ event.location }}
                 </span>
@@ -64,6 +44,10 @@ const events = [
             <p class="event-item__desc">{{ event.description }}</p>
           </div>
         </article>
+      </div>
+
+      <div v-else class="events__empty">
+        Derzeit sind keine Veranstaltungen geplant.
       </div>
     </div>
   </section>
@@ -171,6 +155,14 @@ const events = [
   color: var(--muted);
   line-height: 1.65;
   max-width: 65ch;
+}
+
+.events__empty {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  border-top: 1.5px solid var(--border);
 }
 
 @media (max-width: 600px) {

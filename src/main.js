@@ -3,8 +3,8 @@ import router from './router'
 import App from './App.vue'
 import './assets/main.css'
 import { loadAdminPosts } from './data/posts.js'
+import { loadAdminEvents } from './data/events.js'
 
-// Load server-side admin posts before mounting so PostView routing works correctly
-loadAdminPosts().finally(() => {
+Promise.all([loadAdminPosts(), loadAdminEvents()]).finally(() => {
   createApp(App).use(router).mount('#app')
 })
