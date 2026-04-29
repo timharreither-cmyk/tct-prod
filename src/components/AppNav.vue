@@ -42,7 +42,7 @@ const navLinks = [
           {{ link.label }}
         </RouterLink>
         <a
-          href="https://www.etennis.at/tc-tulln"
+          href="https://www.tc-tulln.at/reservierung"
           target="_blank"
           rel="noopener"
           class="btn btn--primary nav__cta"
@@ -67,7 +67,7 @@ const navLinks = [
         {{ link.label }}
       </RouterLink>
       <a
-        href="https://www.etennis.at/tc-tulln"
+        href="https://www.tc-tulln.at/reservierung"
         target="_blank"
         rel="noopener"
         class="btn btn--primary"

@@ -29,7 +29,7 @@ const slides = [
     line2: 'rotem Sand',
     body: 'Über 10 gepflegte Sandplätze – professionell saniert für die Saison 2026.',
     image: img1,
-    cta: { text: 'Platz buchen', href: 'https://www.etennis.at/tc-tulln', external: true },
+    cta: { text: 'Platz buchen', href: 'https://www.tc-tulln.at/reservierung', external: true },
   },
   {
     category: 'Anlage',

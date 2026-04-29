@@ -10,7 +10,7 @@ const quickLinks = [
 ]
 
 const externalLinks = [
-  { label: 'Platzbuchung (eTennis)', href: 'https://www.etennis.at/tc-tulln' },
+  { label: 'Platzbuchung', href: 'https://www.tc-tulln.at/reservierung' },
   { label: 'Tennisschule Christian Wolf', href: 'https://christianwolf.at' },
   { label: 'Tennis Austria', href: 'https://www.tennisaustria.at' },
   { label: 'NÖ Tennisverband', href: '#' },
@@ -69,7 +69,7 @@ const externalLinks = [
           <div class="footer__contact">
             <p>Tennisclub Tulln<br>Tulln an der Donau<br>Niederösterreich</p>
             <a href="mailto:office@tc-tulln.at" class="footer__link footer__link--email">office@tc-tulln.at</a>
-            <a href="https://www.etennis.at/tc-tulln" target="_blank" rel="noopener" class="btn btn--outline footer__book-btn">
+            <a href="https://www.tc-tulln.at/reservierung" target="_blank" rel="noopener" class="btn btn--outline footer__book-btn">
               Platz buchen
             </a>
           </div>
