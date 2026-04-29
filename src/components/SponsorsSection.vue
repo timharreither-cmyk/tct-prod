@@ -3,31 +3,32 @@ import { sponsors } from '../data/sponsors.js'
 </script>
 
 <template>
-  <section class="section" id="sponsoren">
+  <section class="section section--white" id="sponsoren">
     <div class="container">
       <span class="section__label">Unsere Partner</span>
       <div class="divider"></div>
-      <h2 class="section__title" style="margin-bottom: 3rem">
+      <h2 class="section__title sponsors__heading">
         Danke an unsere<br><em>Sponsoren & Partner</em>
       </h2>
+    </div>
 
-      <div class="sponsors__grid">
+    <div class="sponsors__track-wrap">
+      <div class="sponsors__track">
         <a
-          v-for="s in sponsors"
-          :key="s.name"
+          v-for="(s, i) in [...sponsors, ...sponsors]"
+          :key="i"
           :href="s.url"
           target="_blank"
           rel="noopener"
-          class="sponsor-item"
-          :class="{ 'sponsor-item--main': s.category === 'Hauptsponsor' }"
+          class="sponsor-card"
+          :title="s.name"
         >
-          <div class="sponsor-item__inner">
-            <span v-if="s.category === 'Hauptsponsor'" class="sponsor-item__badge">Hauptsponsor</span>
-            <span class="sponsor-item__name">{{ s.name }}</span>
-          </div>
+          <img :src="s.logo" :alt="s.name" class="sponsor-card__img" />
         </a>
       </div>
+    </div>
 
+    <div class="container">
       <p class="sponsors__cta">
         Interesse an einer Partnerschaft?
         <RouterLink to="/kontakt" class="sponsors__cta-link">Kontaktieren Sie uns</RouterLink>
@@ -42,64 +43,88 @@ import { sponsors } from '../data/sponsors.js'
   color: var(--blue);
 }
 
-.sponsors__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5px;
-  background-color: var(--border);
+.sponsors__heading {
+  margin-bottom: 3rem;
 }
 
-.sponsor-item {
-  background-color: var(--bg);
+/* ── Scrolling track ── */
+.sponsors__track-wrap {
+  overflow: hidden;
+  padding: 0.5rem 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.sponsors__track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.sponsors__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Individual card ── */
+.sponsor-card {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem;
-  min-height: 90px;
-  text-decoration: none;
-  transition: background-color var(--transition);
+  width: 180px;
+  height: 90px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
+  cursor: pointer;
 }
 
-.sponsor-item:hover {
-  background-color: var(--white);
+.sponsor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26, 114, 216, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+  border-color: rgba(26, 114, 216, 0.3);
 }
 
-.sponsor-item--main {
-  grid-column: span 2;
-  min-height: 110px;
+.sponsor-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(30%);
+  opacity: 0.85;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
-.sponsor-item__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.sponsor-item__badge {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--blue);
-}
-
-.sponsor-item__name {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--black);
-  text-align: center;
-  letter-spacing: 0.03em;
-  opacity: 0.7;
-  transition: opacity var(--transition);
-}
-
-.sponsor-item:hover .sponsor-item__name {
+.sponsor-card:hover .sponsor-card__img {
+  filter: grayscale(0%);
   opacity: 1;
 }
 
+/* ── CTA ── */
 .sponsors__cta {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   text-align: center;
   font-size: 0.9rem;
   color: var(--muted);
@@ -111,15 +136,10 @@ import { sponsors } from '../data/sponsors.js'
   text-decoration: underline;
   text-underline-offset: 3px;
   margin-left: 0.3rem;
+  transition: opacity 0.2s;
 }
 
-@media (max-width: 768px) {
-  .sponsors__grid { grid-template-columns: repeat(2, 1fr); }
-  .sponsor-item--main { grid-column: span 2; }
-}
-
-@media (max-width: 480px) {
-  .sponsors__grid { grid-template-columns: 1fr; }
-  .sponsor-item--main { grid-column: span 1; }
+.sponsors__cta-link:hover {
+  opacity: 0.75;
 }
 </style>
