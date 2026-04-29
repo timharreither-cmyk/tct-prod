@@ -23,10 +23,10 @@ const externalLinks = [
       <div class="footer__grid">
         <!-- Brand -->
         <div class="footer__brand">
-          <div class="footer__logo">
-            <span class="footer__logo-abbr">TCT</span>
+          <RouterLink to="/" class="footer__logo">
+            <img src="/TCT_Logo.jpg" alt="TCT Tennisclub Tulln" class="footer__logo-img" />
             <span class="footer__logo-full">Tennisclub Tulln</span>
-          </div>
+          </RouterLink>
           <p class="footer__tagline">
             Leidenschaft für Tennis.<br>
             Gemeinschaft, die verbindet.
@@ -107,15 +107,15 @@ const externalLinks = [
 
 .footer__logo {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.6rem;
+  text-decoration: none;
 }
 
-.footer__logo-abbr {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--blue);
+.footer__logo-img {
+  height: 2.2rem;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer__logo-full {
