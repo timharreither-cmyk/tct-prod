@@ -69,20 +69,22 @@ function extractImage(content) {
             :key="post.id"
             class="news-all__card"
           >
-            <div v-if="extractImage(post.content)" class="news-all__img-wrap">
-              <img :src="extractImage(post.content)" :alt="post.title" class="news-all__img" />
-            </div>
-            <div class="news-all__body">
-              <div class="news-all__meta">
-                <span class="tag">{{ post.category }}</span>
-                <time class="news-all__date">{{ formatDate(post.date) }}</time>
+            <div class="news-all__body" :class="{ 'news-all__body--with-img': extractImage(post.content) }">
+              <div class="news-all__text">
+                <div class="news-all__meta">
+                  <span class="tag">{{ post.category }}</span>
+                  <time class="news-all__date">{{ formatDate(post.date) }}</time>
+                </div>
+                <h2 class="news-all__title">{{ post.title }}</h2>
+                <p class="news-all__excerpt">{{ post.excerpt }}</p>
+                <RouterLink :to="`/news/${post.slug}`" class="news-all__link">
+                  Artikel lesen
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </RouterLink>
               </div>
-              <h2 class="news-all__title">{{ post.title }}</h2>
-              <p class="news-all__excerpt">{{ post.excerpt }}</p>
-              <RouterLink :to="`/news/${post.slug}`" class="news-all__link">
-                Artikel lesen
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </RouterLink>
+              <div v-if="extractImage(post.content)" class="news-all__img-wrap">
+                <img :src="extractImage(post.content)" :alt="post.title" class="news-all__img" />
+              </div>
             </div>
           </article>
         </div>
@@ -175,11 +177,35 @@ function extractImage(content) {
   overflow: hidden;
 }
 
+.news-all__body {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.news-all__body--with-img {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.news-all__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
 .news-all__img-wrap {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+  width: 140px;
   flex-shrink: 0;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 2px;
+  opacity: 0.9;
 }
 
 .news-all__img {
@@ -191,15 +217,8 @@ function extractImage(content) {
 }
 
 .news-all__card:hover .news-all__img {
-  transform: scale(1.04);
-}
-
-.news-all__body {
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1;
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .news-all__card:hover {
