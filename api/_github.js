@@ -1,6 +1,6 @@
 const GITHUB_TOKEN = process.env.Github_Token
-const REPO_OWNER = 'timharreither-cmyk'
-const REPO_NAME = 'tct'
+const REPO_OWNER = process.env.GITHUB_REPO_OWNER || 'timharreither-cmyk'
+const REPO_NAME = process.env.GITHUB_REPO_NAME || 'tct'
 const BASE = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`
 
 function ghHeaders() {
