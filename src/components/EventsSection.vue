@@ -1,12 +1,15 @@
 <script setup>
 import { computed } from 'vue'
-import { getUpcomingEvents, formatEventDate } from '../data/events.js'
+import { getAllEvents, formatEventDate } from '../data/events.js'
 
 const events = computed(() =>
-  getUpcomingEvents(6).map(e => ({
-    ...e,
-    dateParts: formatEventDate(e.date),
-  }))
+  [...getAllEvents()]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3)
+    .map(e => ({
+      ...e,
+      dateParts: formatEventDate(e.date),
+    }))
 )
 </script>
 
