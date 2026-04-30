@@ -18,7 +18,10 @@ export async function saveEvent(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Speichern fehlgeschlagen')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || `HTTP ${res.status}`)
+  }
   const event = await res.json()
   adminEvents.value = [event, ...adminEvents.value]
   return event
@@ -30,7 +33,10 @@ export async function updateEvent(id, data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Aktualisieren fehlgeschlagen')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || `HTTP ${res.status}`)
+  }
   const updated = await res.json()
   adminEvents.value = adminEvents.value.map(e => (e.id === id ? updated : e))
   return updated

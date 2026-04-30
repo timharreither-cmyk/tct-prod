@@ -118,8 +118,8 @@ async function submitPost() {
       flashSuccess('Beitrag wurde gespeichert.')
     }
     resetPostForm()
-  } catch {
-    flashError('Fehler beim Speichern. Ist der Server erreichbar?')
+  } catch (err) {
+    flashError(`Fehler beim Speichern: ${err.message}`)
   } finally {
     savingPost.value = false
   }
@@ -208,8 +208,8 @@ async function submitEvent() {
       flashSuccess('Veranstaltung wurde gespeichert.')
     }
     resetEventForm()
-  } catch {
-    flashError('Fehler beim Speichern der Veranstaltung.')
+  } catch (err) {
+    flashError(`Fehler beim Speichern: ${err.message}`)
   } finally {
     savingEvent.value = false
   }

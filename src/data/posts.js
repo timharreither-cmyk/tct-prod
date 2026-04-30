@@ -18,7 +18,10 @@ export async function savePost(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Speichern fehlgeschlagen')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || `HTTP ${res.status}`)
+  }
   const post = await res.json()
   adminPosts.value = [post, ...adminPosts.value]
   return post
@@ -30,7 +33,10 @@ export async function updatePost(id, data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error('Aktualisieren fehlgeschlagen')
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || `HTTP ${res.status}`)
+  }
   const updated = await res.json()
   adminPosts.value = adminPosts.value.map(p => (p.id === id ? updated : p))
   return updated
