@@ -43,7 +43,11 @@ export async function updatePost(id, data) {
 }
 
 export async function deletePost(id) {
-  await fetch(`/api/posts/${id}`, { method: 'DELETE' })
+  const res = await fetch(`/api/posts/${id}`, { method: 'DELETE' })
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || `HTTP ${res.status}`)
+  }
   adminPosts.value = adminPosts.value.filter(p => p.id !== id)
 }
 

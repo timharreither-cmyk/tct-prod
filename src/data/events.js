@@ -43,7 +43,11 @@ export async function updateEvent(id, data) {
 }
 
 export async function deleteEvent(id) {
-  await fetch(`/api/events/${id}`, { method: 'DELETE' })
+  const res = await fetch(`/api/events/${id}`, { method: 'DELETE' })
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.error || `HTTP ${res.status}`)
+  }
   adminEvents.value = adminEvents.value.filter(e => e.id !== id)
 }
 
