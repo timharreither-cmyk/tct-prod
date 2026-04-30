@@ -466,8 +466,11 @@ function switchTab(tab) {
             <form class="post-form" @submit.prevent="submitEvent">
 
               <div class="field">
-                <label class="field__label" for="e-title">Titel *</label>
-                <input id="e-title" v-model="eventForm.title" type="text" class="field__input" required />
+                <div class="field__labelrow">
+                  <label class="field__label" for="e-title">Titel *</label>
+                  <span class="field__counter" :class="{ 'field__counter--warn': eventForm.title.length > 65 }">{{ eventForm.title.length }}/75</span>
+                </div>
+                <input id="e-title" v-model="eventForm.title" type="text" class="field__input" maxlength="75" required />
               </div>
 
               <div class="field-row">
@@ -495,8 +498,11 @@ function switchTab(tab) {
               </div>
 
               <div class="field">
-                <label class="field__label" for="e-desc">Beschreibung *</label>
-                <textarea id="e-desc" v-model="eventForm.description" class="field__input field__input--ta" rows="4" required />
+                <div class="field__labelrow">
+                  <label class="field__label" for="e-desc">Beschreibung *</label>
+                  <span class="field__counter" :class="{ 'field__counter--warn': eventForm.description.length > 140 }">{{ eventForm.description.length }}/160</span>
+                </div>
+                <textarea id="e-desc" v-model="eventForm.description" class="field__input field__input--ta" rows="3" maxlength="160" required />
               </div>
 
               <div class="field">
@@ -783,12 +789,30 @@ function switchTab(tab) {
   justify-content: space-between;
 }
 
+.field__labelrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .field__label {
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.field__counter {
+  font-size: 0.72rem;
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.field__counter--warn {
+  color: #c0392b;
+  opacity: 1;
+  font-weight: 600;
 }
 
 .field__input {
