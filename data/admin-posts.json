@@ -5,6 +5,17 @@
     "date": "2026-04-30",
     "category": "Events",
     "excerpt": "asdf",
+    "content": "asdf",
+    "image": null,
+    "featured": false,
+    "id": "admin-1777576406366"
+  },
+  {
+    "slug": "asdf",
+    "title": "asdf",
+    "date": "2026-04-30",
+    "category": "Events",
+    "excerpt": "asdf",
     "content": "asdf![1743062024410](https://raw.githubusercontent.com/timharreither-cmyk/tct-prod/main/uploads/1777576396522.jpeg)\n",
     "image": null,
     "featured": false,
