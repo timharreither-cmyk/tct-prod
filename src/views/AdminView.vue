@@ -103,9 +103,18 @@ const filteredPosts = computed(() => {
   )
 })
 
+function autoGrow(e) {
+  const el = e.target
+  el.style.height = 'auto'
+  el.style.height = el.scrollHeight + 'px'
+}
+
 async function submitPost() {
   const { title, slug, category, date, excerpt, content, featured } = postForm.value
-  if (!title || !slug || !excerpt || !content) return
+  if (!title || !slug || !excerpt || !content) {
+    flashError('Bitte alle Pflichtfelder ausfüllen (Titel, Slug, Teaser, Inhalt).')
+    return
+  }
 
   savingPost.value = true
   try {
@@ -347,8 +356,11 @@ function switchTab(tab) {
               <form class="post-form" @submit.prevent="submitPost">
 
                 <div class="field">
-                  <label class="field__label" for="f-title">Titel *</label>
-                  <input id="f-title" v-model="postForm.title" type="text" class="field__input" @input="onTitleInput" required />
+                  <div class="field__labelrow">
+                    <label class="field__label" for="f-title">Titel *</label>
+                    <span class="field__counter" :class="{ 'field__counter--warn': postForm.title.length > 65 }">{{ postForm.title.length }}/75</span>
+                  </div>
+                  <input id="f-title" v-model="postForm.title" type="text" class="field__input" maxlength="75" @input="onTitleInput" required />
                 </div>
 
                 <div class="field-row">
@@ -371,7 +383,7 @@ function switchTab(tab) {
 
                 <div class="field">
                   <label class="field__label" for="f-excerpt">Teaser *</label>
-                  <textarea id="f-excerpt" v-model="postForm.excerpt" class="field__input field__input--ta" rows="3" required />
+                  <textarea id="f-excerpt" v-model="postForm.excerpt" class="field__input field__input--ta field__input--grow" rows="3" @input="autoGrow" required />
                 </div>
 
                 <div class="field">
@@ -498,11 +510,8 @@ function switchTab(tab) {
               </div>
 
               <div class="field">
-                <div class="field__labelrow">
-                  <label class="field__label" for="e-desc">Beschreibung *</label>
-                  <span class="field__counter" :class="{ 'field__counter--warn': eventForm.description.length > 140 }">{{ eventForm.description.length }}/160</span>
-                </div>
-                <textarea id="e-desc" v-model="eventForm.description" class="field__input field__input--ta" rows="3" maxlength="160" required />
+                <label class="field__label" for="e-desc">Beschreibung *</label>
+                <textarea id="e-desc" v-model="eventForm.description" class="field__input field__input--ta field__input--grow" rows="3" @input="autoGrow" required />
               </div>
 
               <div class="field">
@@ -836,6 +845,7 @@ function switchTab(tab) {
 }
 
 .field__input--ta { resize: vertical; }
+.field__input--grow { resize: none; overflow: hidden; }
 
 .field-row {
   display: grid;
