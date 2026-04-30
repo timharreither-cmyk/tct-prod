@@ -23,6 +23,12 @@ function formatDate(iso) {
     year: 'numeric',
   })
 }
+
+function extractImage(content) {
+  if (!content) return null
+  const m = content.match(/!\[.*?\]\((.*?)\)/)
+  return m ? m[1] : null
+}
 </script>
 
 <template>
@@ -63,16 +69,21 @@ function formatDate(iso) {
             :key="post.id"
             class="news-all__card"
           >
-            <div class="news-all__meta">
-              <span class="tag">{{ post.category }}</span>
-              <time class="news-all__date">{{ formatDate(post.date) }}</time>
+            <div v-if="extractImage(post.content)" class="news-all__img-wrap">
+              <img :src="extractImage(post.content)" :alt="post.title" class="news-all__img" />
             </div>
-            <h2 class="news-all__title">{{ post.title }}</h2>
-            <p class="news-all__excerpt">{{ post.excerpt }}</p>
-            <RouterLink :to="`/news/${post.slug}`" class="news-all__link">
-              Artikel lesen
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </RouterLink>
+            <div class="news-all__body">
+              <div class="news-all__meta">
+                <span class="tag">{{ post.category }}</span>
+                <time class="news-all__date">{{ formatDate(post.date) }}</time>
+              </div>
+              <h2 class="news-all__title">{{ post.title }}</h2>
+              <p class="news-all__excerpt">{{ post.excerpt }}</p>
+              <RouterLink :to="`/news/${post.slug}`" class="news-all__link">
+                Artikel lesen
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </RouterLink>
+            </div>
           </article>
         </div>
 
@@ -157,11 +168,38 @@ function formatDate(iso) {
 
 .news-all__card {
   background-color: var(--white);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition);
+  overflow: hidden;
+}
+
+.news-all__img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.news-all__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.news-all__card:hover .news-all__img {
+  transform: scale(1.04);
+}
+
+.news-all__body {
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  transition: background-color var(--transition);
+  flex: 1;
 }
 
 .news-all__card:hover {
