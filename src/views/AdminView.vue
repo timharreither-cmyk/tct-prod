@@ -166,6 +166,7 @@ const EVENT_TAGS = ['Event', 'Turnier', 'Clublokal', 'Jugend', 'Anlage', 'Traini
 const eventForm = ref(emptyEventForm())
 const editingEventId = ref(null)
 const savingEvent = ref(false)
+const uploadingEventImg = ref(false)
 
 function emptyEventForm() {
   return {
@@ -175,6 +176,21 @@ function emptyEventForm() {
     time: '',
     location: 'TC Tulln Anlage',
     tag: 'Event',
+    image: null,
+  }
+}
+
+async function handleEventImg(e) {
+  const file = e.target.files[0]
+  if (!file) return
+  uploadingEventImg.value = true
+  try {
+    eventForm.value.image = await uploadFile(file)
+  } catch {
+    flashError('Bild-Upload fehlgeschlagen.')
+  } finally {
+    uploadingEventImg.value = false
+    e.target.value = ''
   }
 }
 
@@ -224,6 +240,7 @@ function editEvent(e) {
     time: e.time || '',
     location: e.location || '',
     tag: e.tag || 'Event',
+    image: e.image || null,
   }
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -480,6 +497,21 @@ function switchTab(tab) {
               <div class="field">
                 <label class="field__label" for="e-desc">Beschreibung *</label>
                 <textarea id="e-desc" v-model="eventForm.description" class="field__input field__input--ta" rows="4" required />
+              </div>
+
+              <div class="field">
+                <label class="field__label">Bild (optional)</label>
+                <div class="img-upload">
+                  <div v-if="eventForm.image" class="img-upload__preview">
+                    <img :src="eventForm.image" alt="Vorschau" class="img-upload__img" />
+                    <button type="button" class="img-upload__remove" @click="eventForm.image = null">✕ Entfernen</button>
+                  </div>
+                  <label v-else class="img-upload__label">
+                    <span v-if="uploadingEventImg">Wird hochgeladen…</span>
+                    <span v-else>Bild auswählen</span>
+                    <input type="file" accept="image/*" class="img-upload__input" :disabled="uploadingEventImg" @change="handleEventImg" />
+                  </label>
+                </div>
               </div>
 
               <div class="form-actions">
@@ -786,6 +818,49 @@ function switchTab(tab) {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+
+.img-upload__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--border);
+  padding: 1.2rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--muted);
+  transition: border-color var(--transition);
+}
+
+.img-upload__label:hover { border-color: var(--clay); color: var(--clay); }
+
+.img-upload__input {
+  display: none;
+}
+
+.img-upload__preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.img-upload__img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.img-upload__remove {
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.img-upload__remove:hover { color: #c0392b; border-color: #c0392b; }
 
 .checkbox-field {
   display: flex;
