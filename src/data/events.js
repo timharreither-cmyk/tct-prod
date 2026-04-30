@@ -61,6 +61,7 @@ export const fallbackEvents = [
     description: 'Der traditionelle Saisonauftakt mit Generationen-Doppel, Catering und gemütlichem Beisammensein für alle Mitglieder und Interessierte.',
     location: 'TC Tulln Anlage',
     tag: 'Event',
+    image: '/Herren1.jpg',
   },
   {
     id: 'fallback-2',
@@ -70,6 +71,7 @@ export const fallbackEvents = [
     description: 'Grand Opening des neuen Clublokals unter Betreiber Ellwood Entlicher mit amerikanischem Sports Bar Konzept.',
     location: 'Clubhaus TC Tulln',
     tag: 'Clublokal',
+    image: '/Harry.jpeg',
   },
   {
     id: 'fallback-3',
