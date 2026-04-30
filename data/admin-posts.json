@@ -1,0 +1,24 @@
+[
+  {
+    "slug": "asdf",
+    "title": "asdf",
+    "date": "2026-04-30",
+    "category": "Events",
+    "excerpt": "asdf",
+    "content": "test[Linktext](https://www.tc-tulln.at)",
+    "image": null,
+    "featured": true,
+    "id": "admin-1777572033758"
+  },
+  {
+    "slug": "asdf",
+    "title": "asdf",
+    "date": "2026-04-30",
+    "category": "Events",
+    "excerpt": "asf",
+    "content": "asdf",
+    "image": null,
+    "featured": false,
+    "id": "admin-1777571984898"
+  }
+]
