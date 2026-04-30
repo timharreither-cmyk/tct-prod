@@ -103,6 +103,8 @@ Das Catering wird von unseren engagierten Clubmitgliedern übernommen. Wir freue
     content: `
 # Timeline für den „Gastro-Change"
 
+![Timeline Gastro-Change](/Timeline_gastrochange.jpeg)
+
 Wir möchten euch transparent über die Übergabe in unserem Clublokal informieren.
 
 ## Übergangsphase
@@ -136,6 +138,8 @@ Wir freuen uns auf das neue Kapitel und sind gespannt auf die neue Atmosphäre!
     excerpt: 'Wir freuen uns, einen neuen Betreiber für unser Clublokal bekannt zu geben. Ellwood Entlicher bringt frischen Wind mit einem modernen American Sports Bar Konzept.',
     content: `
 # Neuer Schwung für unser Clublokal
+
+![TCT Oldies](/TCT_OLDIES.JPG)
 
 Der Tennisclub Tulln freut sich, einen neuen Betreiber für sein Clublokal bekannt zu geben!
 
