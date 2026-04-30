@@ -1,4 +1,4 @@
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN
+const GITHUB_TOKEN = process.env.GH_PAT
 const REPO_OWNER = 'timharreither-cmyk'
 const REPO_NAME = 'tct'
 const BASE = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`
