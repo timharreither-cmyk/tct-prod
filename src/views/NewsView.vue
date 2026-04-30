@@ -200,7 +200,7 @@ function extractImage(content) {
 }
 
 .news-all__img-wrap {
-  width: 140px;
+  width: 185px;
   flex-shrink: 0;
   aspect-ratio: 3 / 2;
   overflow: hidden;

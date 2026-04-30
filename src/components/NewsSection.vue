@@ -120,7 +120,7 @@ function extractImage(content) {
 }
 
 .news-card__img-wrap {
-  width: 110px;
+  width: 160px;
   flex-shrink: 0;
   aspect-ratio: 3 / 2;
   overflow: hidden;

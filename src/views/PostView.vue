@@ -121,6 +121,7 @@ function formatDate(iso) {
 .post-page__meta {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -136,8 +137,9 @@ function formatDate(iso) {
   font-weight: 600;
   line-height: 1.1;
   color: var(--black);
-  margin-bottom: 1.25rem;
-  max-width: 22ch;
+  margin: 0 auto 1.25rem;
+  max-width: 20ch;
+  text-align: center;
 }
 
 .post-page__excerpt {
@@ -145,6 +147,8 @@ function formatDate(iso) {
   color: var(--muted);
   line-height: 1.65;
   max-width: 60ch;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .post-page__content {
@@ -153,9 +157,10 @@ function formatDate(iso) {
 }
 
 .post-body {
-  max-width: 680px;
-  font-size: 1rem;
-  line-height: 1.75;
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
   color: var(--black);
 }
 
