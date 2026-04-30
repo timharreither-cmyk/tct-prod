@@ -11,6 +11,12 @@ function formatDate(iso) {
     year: 'numeric',
   })
 }
+
+function extractImage(content) {
+  if (!content) return null
+  const m = content.match(/!\[.*?\]\((.*?)\)/)
+  return m ? m[1] : null
+}
 </script>
 
 <template>
@@ -35,16 +41,23 @@ function formatDate(iso) {
           class="news-card"
           :class="{ 'news-card--featured': i === 0 }"
         >
-          <div class="news-card__meta">
-            <span class="tag">{{ post.category }}</span>
-            <time class="news-card__date">{{ formatDate(post.date) }}</time>
+          <div class="news-card__inner" :class="{ 'news-card__inner--with-img': extractImage(post.content) }">
+            <div class="news-card__text">
+              <div class="news-card__meta">
+                <span class="tag">{{ post.category }}</span>
+                <time class="news-card__date">{{ formatDate(post.date) }}</time>
+              </div>
+              <h3 class="news-card__title">{{ post.title }}</h3>
+              <p class="news-card__excerpt">{{ post.excerpt }}</p>
+              <RouterLink :to="`/news/${post.slug}`" class="news-card__link">
+                Weiterlesen
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </RouterLink>
+            </div>
+            <div v-if="extractImage(post.content)" class="news-card__img-wrap">
+              <img :src="extractImage(post.content)" :alt="post.title" class="news-card__img" />
+            </div>
           </div>
-          <h3 class="news-card__title">{{ post.title }}</h3>
-          <p class="news-card__excerpt">{{ post.excerpt }}</p>
-          <RouterLink :to="`/news/${post.slug}`" class="news-card__link">
-            Weiterlesen
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </RouterLink>
         </article>
       </div>
     </div>
@@ -82,8 +95,50 @@ function formatDate(iso) {
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   transition: background-color var(--transition);
+}
+
+.news-card__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.news-card__inner--with-img {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.news-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.news-card__img-wrap {
+  width: 110px;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.news-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.news-card:hover .news-card__img {
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .news-card:hover {
