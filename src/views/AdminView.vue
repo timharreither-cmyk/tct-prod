@@ -981,25 +981,43 @@ function switchTab(tab) {
 
 .item-list__body {
   grid-column: 1;
+  min-width: 0;
 }
 
 .item-list__title {
   font-size: 0.95rem;
   color: var(--black);
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin-bottom: 0.25rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .item-list__desc {
   font-size: 0.82rem;
   color: var(--muted);
   margin: 0 0 0.35rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .item-list__sub {
   font-size: 0.76rem;
   color: var(--muted);
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .item-list__actions {

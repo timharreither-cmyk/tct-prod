@@ -184,6 +184,14 @@ const events = computed(() =>
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--black);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .event-item__desc {
@@ -191,6 +199,14 @@ const events = computed(() =>
   color: var(--muted);
   line-height: 1.65;
   max-width: 65ch;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .events__empty {

@@ -244,6 +244,14 @@ function extractImage(content) {
   font-weight: 600;
   line-height: 1.25;
   color: var(--black);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .news-all__excerpt {
@@ -251,6 +259,14 @@ function extractImage(content) {
   color: var(--muted);
   line-height: 1.65;
   flex-grow: 1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .news-all__link {

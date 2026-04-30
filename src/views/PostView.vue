@@ -140,6 +140,9 @@ function formatDate(iso) {
   margin: 0 auto 1.25rem;
   max-width: 20ch;
   text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .post-page__excerpt {
@@ -149,6 +152,9 @@ function formatDate(iso) {
   max-width: 60ch;
   margin: 0 auto;
   text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .post-page__content {
@@ -162,6 +168,9 @@ function formatDate(iso) {
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--black);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 /* Blog markdown styles */
@@ -287,6 +296,14 @@ function formatDate(iso) {
   color: var(--black);
   line-height: 1.25;
   flex-grow: 1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .related__date {
