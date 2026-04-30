@@ -54,16 +54,6 @@ export async function deleteEvent(id) {
 // ── Hardcoded fallback events (shown when no admin events exist) ──────────────
 export const fallbackEvents = [
   {
-    id: 'fallback-1',
-    date: '2026-04-25',
-    time: '10:00 Uhr',
-    title: 'Season Opening 2026',
-    description: 'Der traditionelle Saisonauftakt mit Generationen-Doppel, Catering und gemütlichem Beisammensein für alle Mitglieder und Interessierte.',
-    location: 'TC Tulln Anlage',
-    tag: 'Event',
-    image: '/Herren1.jpg',
-  },
-  {
     id: 'fallback-2',
     date: '2026-05-01',
     time: '18:00 Uhr',
@@ -81,6 +71,7 @@ export const fallbackEvents = [
     description: 'Die jährliche Vereinsmeisterschaft aller Klassen – von Jugend bis Senioren. Anmeldung über die Clubverwaltung.',
     location: 'TC Tulln Anlage',
     tag: 'Turnier',
+    image: '/Herren1.jpg',
   },
 ]
 
