@@ -27,21 +27,26 @@ const events = computed(() =>
             <span class="event-item__year">{{ event.dateParts.year }}</span>
           </div>
           <div class="event-item__body">
-            <div class="event-item__top">
-              <span class="tag">{{ event.tag }}</span>
-              <div class="event-item__details">
-                <span v-if="event.time">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  {{ event.time }}
-                </span>
-                <span v-if="event.location">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  {{ event.location }}
-                </span>
+            <div class="event-item__content">
+              <div class="event-item__top">
+                <span class="tag">{{ event.tag }}</span>
+                <div class="event-item__details">
+                  <span v-if="event.time">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ event.time }}
+                  </span>
+                  <span v-if="event.location">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {{ event.location }}
+                  </span>
+                </div>
               </div>
+              <h3 class="event-item__title">{{ event.title }}</h3>
+              <p class="event-item__desc">{{ event.description }}</p>
             </div>
-            <h3 class="event-item__title">{{ event.title }}</h3>
-            <p class="event-item__desc">{{ event.description }}</p>
+            <div v-if="event.image" class="event-item__img-wrap">
+              <img :src="event.image" :alt="event.title" class="event-item__img" />
+            </div>
           </div>
         </article>
       </div>
@@ -118,8 +123,39 @@ const events = computed(() =>
 
 .event-item__body {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.event-item__content {
+  display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.event-item__img-wrap {
+  width: 160px;
+  flex-shrink: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+.event-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.event-item:hover .event-item__img {
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .event-item__top {

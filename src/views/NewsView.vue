@@ -235,6 +235,7 @@ function extractImage(content) {
 .news-all__date {
   font-size: 0.72rem;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .news-all__title {

@@ -164,6 +164,7 @@ function extractImage(content) {
   font-size: 0.72rem;
   color: var(--muted);
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .news-card__title {
