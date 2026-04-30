@@ -1,5 +1,16 @@
 [
   {
+    "slug": "test",
+    "title": "test",
+    "date": "2026-04-30",
+    "category": "Events",
+    "excerpt": "test",
+    "content": "test",
+    "image": null,
+    "featured": false,
+    "id": "admin-1777572307936"
+  },
+  {
     "slug": "asd",
     "title": "asd",
     "date": "2026-04-30",
