@@ -3,8 +3,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/api/posts/:id", "destination": "/api/posts?id=:id" },
+    { "source": "/api/events/:id", "destination": "/api/events?id=:id" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
