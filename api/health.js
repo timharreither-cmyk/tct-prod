@@ -4,5 +4,7 @@ export default function handler(req, res) {
     hasGithubToken: !!process.env.GH_PAT,
     hasBlobToken: !!process.env.BLOB_READ_WRITE_TOKEN,
     node: process.version,
+    ts: new Date().toISOString(),
   })
 }
+
