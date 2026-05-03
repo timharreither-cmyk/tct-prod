@@ -19,8 +19,22 @@ const winter = [
 
 const schedule = {
   hours: ['06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22'],
-  weekday: ['D','D','C','B','B','B','C','C','C','C','A','A','A','A','A','C','D'],
-  weekend: ['D','D','C','A','A','A','A','A','A','A','A','A','A','A','A','C','D'],
+  weekday: [
+    { cat: 'D', span: 2 },
+    { cat: 'C', span: 1 },
+    { cat: 'B', span: 3 },
+    { cat: 'C', span: 4 },
+    { cat: 'A', span: 5 },
+    { cat: 'C', span: 1 },
+    { cat: 'D', span: 1 },
+  ],
+  weekend: [
+    { cat: 'D', span: 2 },
+    { cat: 'C', span: 1 },
+    { cat: 'A', span: 12 },
+    { cat: 'C', span: 1 },
+    { cat: 'D', span: 1 },
+  ],
 }
 </script>
 
@@ -84,13 +98,13 @@ const schedule = {
             <div class="schedule__row">
               <span class="schedule__day">Mo – Fr</span>
               <div class="schedule__bars">
-                <div v-for="(cat, i) in schedule.weekday" :key="i" class="schedule__cell" :data-cat="cat"></div>
+                <div v-for="(seg, i) in schedule.weekday" :key="i" class="schedule__seg" :data-cat="seg.cat" :style="{ '--span': seg.span }">{{ seg.cat }}</div>
               </div>
             </div>
             <div class="schedule__row">
               <span class="schedule__day">Sa – So</span>
               <div class="schedule__bars">
-                <div v-for="(cat, i) in schedule.weekend" :key="i" class="schedule__cell" :data-cat="cat"></div>
+                <div v-for="(seg, i) in schedule.weekend" :key="i" class="schedule__seg" :data-cat="seg.cat" :style="{ '--span': seg.span }">{{ seg.cat }}</div>
               </div>
             </div>
             <div class="schedule__row schedule__row--times">
@@ -102,7 +116,7 @@ const schedule = {
           </div>
           <div class="schedule__legend">
             <div v-for="row in winter" :key="row.label" class="schedule__legend-item">
-              <span class="schedule__swatch" :data-cat="row.label.slice(-1)"></span>
+              <span class="schedule__swatch" :data-cat="row.label.slice(-1)">{{ row.label.slice(-1) }}</span>
               <span class="schedule__legend-name">{{ row.label }}</span>
               <span class="schedule__legend-price">€{{ row.hourly }}<small>/h</small></span>
             </div>
@@ -313,15 +327,36 @@ const schedule = {
   gap: 2px;
 }
 
-.schedule__cell {
-  height: 26px;
+.schedule__seg {
+  grid-column: span var(--span, 1);
+  height: 32px;
   border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  user-select: none;
 }
 
-.schedule__cell[data-cat="A"] { background: var(--blue); }
-.schedule__cell[data-cat="B"] { background: color-mix(in srgb, var(--blue) 55%, white); }
-.schedule__cell[data-cat="C"] { background: color-mix(in srgb, var(--blue) 28%, white); }
-.schedule__cell[data-cat="D"] { background: color-mix(in srgb, var(--blue) 20%, white); }
+.schedule__seg[data-cat="A"] {
+  background: var(--blue);
+  color: white;
+}
+.schedule__seg[data-cat="B"] {
+  background: var(--black);
+  color: white;
+}
+.schedule__seg[data-cat="C"] {
+  background: color-mix(in srgb, var(--black) 32%, white);
+  color: white;
+}
+.schedule__seg[data-cat="D"] {
+  background: color-mix(in srgb, var(--black) 8%, white);
+  color: var(--muted);
+}
 
 .schedule__times {
   display: grid;
@@ -352,16 +387,23 @@ const schedule = {
 }
 
 .schedule__swatch {
-  width: 10px;
-  height: 10px;
+  width: 22px;
+  height: 22px;
   border-radius: 2px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
-.schedule__swatch[data-cat="A"] { background: var(--blue); }
-.schedule__swatch[data-cat="B"] { background: color-mix(in srgb, var(--blue) 55%, white); }
-.schedule__swatch[data-cat="C"] { background: color-mix(in srgb, var(--blue) 28%, white); }
-.schedule__swatch[data-cat="D"] { background: color-mix(in srgb, var(--blue) 20%, white); }
+.schedule__swatch[data-cat="A"] { background: var(--blue); color: white; }
+.schedule__swatch[data-cat="B"] { background: var(--black); color: white; }
+.schedule__swatch[data-cat="C"] { background: color-mix(in srgb, var(--black) 32%, white); color: white; }
+.schedule__swatch[data-cat="D"] { background: color-mix(in srgb, var(--black) 8%, white); color: var(--muted); }
 
 .schedule__legend-name {
   font-size: 0.78rem;
@@ -464,8 +506,9 @@ const schedule = {
     font-size: 0.65rem;
   }
 
-  .schedule__cell {
-    height: 20px;
+  .schedule__seg {
+    height: 26px;
+    font-size: 0.72rem;
   }
 
   .schedule__times span {
