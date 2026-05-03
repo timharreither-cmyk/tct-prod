@@ -16,6 +16,12 @@ const winter = [
   { label: 'Kategorie C', hourly: 22, abo: 493 },
   { label: 'Kategorie D', hourly: 18, abo: 377 },
 ]
+
+const schedule = {
+  hours: ['06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22'],
+  weekday: ['D','D','C','B','B','B','C','C','C','C','A','A','A','A','A','C','D'],
+  weekend: ['D','D','C','A','A','A','A','A','A','A','A','A','A','A','A','C','D'],
+}
 </script>
 
 <template>
@@ -71,6 +77,36 @@ const winter = [
           <span class="price-row__label">{{ row.label }}</span>
           <span class="price-row__amount">€{{ row.hourly }}<small>&thinsp;/h</small></span>
           <span class="price-row__amount">€{{ row.abo }}<small>&thinsp;/Saison</small></span>
+        </div>
+        <div class="schedule">
+          <div class="schedule__title">Kategorie nach Tageszeit</div>
+          <div class="schedule__chart">
+            <div class="schedule__row">
+              <span class="schedule__day">Mo – Fr</span>
+              <div class="schedule__bars">
+                <div v-for="(cat, i) in schedule.weekday" :key="i" class="schedule__cell" :data-cat="cat"></div>
+              </div>
+            </div>
+            <div class="schedule__row">
+              <span class="schedule__day">Sa – So</span>
+              <div class="schedule__bars">
+                <div v-for="(cat, i) in schedule.weekend" :key="i" class="schedule__cell" :data-cat="cat"></div>
+              </div>
+            </div>
+            <div class="schedule__row schedule__row--times">
+              <span class="schedule__day"></span>
+              <div class="schedule__times">
+                <span v-for="h in schedule.hours" :key="h">{{ h }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="schedule__legend">
+            <div v-for="row in winter" :key="row.label" class="schedule__legend-item">
+              <span class="schedule__swatch" :data-cat="row.label.slice(-1)"></span>
+              <span class="schedule__legend-name">{{ row.label }}</span>
+              <span class="schedule__legend-price">€{{ row.hourly }}<small>/h</small></span>
+            </div>
+          </div>
         </div>
         <p class="price-list__note">
           Saison 22. September 2025 – 12. April 2026. Abonnements müssen bis 31. August bestätigt werden.
@@ -233,6 +269,119 @@ const winter = [
   font-size: 0.88rem;
 }
 
+/* Schedule */
+.schedule {
+  padding: 1.5rem 1.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.schedule__title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.schedule__chart {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.schedule__row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.schedule__day {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted);
+  width: 3.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.schedule__bars {
+  display: grid;
+  grid-template-columns: repeat(17, 1fr);
+  flex: 1;
+  gap: 2px;
+}
+
+.schedule__cell {
+  height: 26px;
+  border-radius: 2px;
+}
+
+.schedule__cell[data-cat="A"] { background: var(--blue); }
+.schedule__cell[data-cat="B"] { background: color-mix(in srgb, var(--blue) 55%, white); }
+.schedule__cell[data-cat="C"] { background: color-mix(in srgb, var(--blue) 28%, white); }
+.schedule__cell[data-cat="D"] { background: color-mix(in srgb, var(--blue) 10%, white); }
+
+.schedule__times {
+  display: grid;
+  grid-template-columns: repeat(17, 1fr);
+  flex: 1;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.schedule__times span {
+  font-size: 0.58rem;
+  color: var(--muted);
+  text-align: center;
+  opacity: 0.7;
+}
+
+.schedule__legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.schedule__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.schedule__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.schedule__swatch[data-cat="A"] { background: var(--blue); }
+.schedule__swatch[data-cat="B"] { background: color-mix(in srgb, var(--blue) 55%, white); }
+.schedule__swatch[data-cat="C"] { background: color-mix(in srgb, var(--blue) 28%, white); }
+.schedule__swatch[data-cat="D"] { background: color-mix(in srgb, var(--blue) 10%, white); border: 1px solid var(--border); }
+
+.schedule__legend-name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.schedule__legend-price {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.schedule__legend-price small {
+  font-family: inherit;
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
 /* Note */
 .price-list__note {
   padding: 1rem 1.75rem;
@@ -304,6 +453,27 @@ const winter = [
 
   .price-list__note {
     padding: 0.85rem 1.25rem;
+  }
+
+  .schedule {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .schedule__day {
+    width: 2.8rem;
+    font-size: 0.65rem;
+  }
+
+  .schedule__cell {
+    height: 20px;
+  }
+
+  .schedule__times span {
+    font-size: 0.5rem;
+  }
+
+  .schedule__legend {
+    gap: 0.75rem 1.25rem;
   }
 
   .membership__cta {
