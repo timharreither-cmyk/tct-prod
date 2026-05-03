@@ -12,8 +12,8 @@ const quickLinks = [
 const externalLinks = [
   { label: 'Platzbuchung', href: 'https://www.tc-tulln.at/reservierung' },
   { label: 'Tennisschule Christian Wolf', href: 'https://christianwolf.at' },
-  { label: 'Tennis Austria', href: 'https://www.tennisaustria.at' },
-  { label: 'NÖ Tennisverband', href: '#' },
+  { label: 'Tennis Austria', href: 'https://www.oetv.at' },
+  { label: 'NÖ Tennisverband', href: 'https://www.noetv.at' },
 ]
 </script>
 

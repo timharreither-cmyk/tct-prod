@@ -3,11 +3,11 @@ import imgTeam1 from '../assets/club-images/aa064eebff59ade73e4709f3913d5426e34f
 import imgTeam2 from '../assets/club-images/4985a81dab06543f9c3a2569b5a4f20a144f425a.jpg'
 
 const teams = [
-  { id: 1, name: 'Herren 1', league: 'NÖ Landesliga', description: 'Flaggschiff des Vereins – das erste Herrenteam spielt auf höchstem regionalen Niveau.' },
-  { id: 2, name: 'Damen 1', league: 'Kreisliga', description: 'Unser erstes Damenteam kämpft in der Kreisliga um Punkte und Aufstieg.' },
-  { id: 3, name: 'Herren 2', league: 'NÖ Landesliga', description: 'Das zweite Herrenteam mit starker Besetzung und ambitionierten Saisonzielen.' },
-  { id: 4, name: 'Herren 3', league: 'Kreisliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.' },
-  { id: 5, name: 'Herren 4', league: 'Kreisliga', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.' },
+  { id: 1, name: 'Herren 1', league: 'NÖ Landesliga', description: 'Flaggschiff des Vereins – das erste Herrenteam spielt auf höchstem regionalen Niveau.', link: 'https://www.noetv.at/liga/adults/275589' },
+  { id: 2, name: 'Damen 1', league: 'Kreisliga', description: 'Unser erstes Damenteam kämpft in der Kreisliga um Punkte und Aufstieg.', link: 'https://www.noetv.at/liga/adults/275589' },
+  { id: 3, name: 'Herren 2', league: 'NÖ Landesliga', description: 'Das zweite Herrenteam mit starker Besetzung und ambitionierten Saisonzielen.', link: 'https://www.noetv.at/liga/adults/275589' },
+  { id: 4, name: 'Herren 3', league: 'Kreisliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.', link: 'https://www.noetv.at/liga/adults/275589' },
+  { id: 5, name: 'Herren 4', league: 'Kreisliga', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.', link: 'https://www.noetv.at/liga/adults/275589' },
 ]
 </script>
 
@@ -44,7 +44,7 @@ const teams = [
             <p class="team-card__desc">{{ team.description }}</p>
           </div>
           <div class="team-card__foot">
-            <a href="https://www.tc-tulln.at" target="_blank" rel="noopener" class="team-card__link">
+            <a :href="team.link" target="_blank" rel="noopener" class="team-card__link">
               Spieler & Ergebnisse
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
