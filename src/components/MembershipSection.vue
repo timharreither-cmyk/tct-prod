@@ -321,7 +321,7 @@ const schedule = {
 .schedule__cell[data-cat="A"] { background: var(--blue); }
 .schedule__cell[data-cat="B"] { background: color-mix(in srgb, var(--blue) 55%, white); }
 .schedule__cell[data-cat="C"] { background: color-mix(in srgb, var(--blue) 28%, white); }
-.schedule__cell[data-cat="D"] { background: color-mix(in srgb, var(--blue) 10%, white); }
+.schedule__cell[data-cat="D"] { background: color-mix(in srgb, var(--blue) 20%, white); }
 
 .schedule__times {
   display: grid;
@@ -361,7 +361,7 @@ const schedule = {
 .schedule__swatch[data-cat="A"] { background: var(--blue); }
 .schedule__swatch[data-cat="B"] { background: color-mix(in srgb, var(--blue) 55%, white); }
 .schedule__swatch[data-cat="C"] { background: color-mix(in srgb, var(--blue) 28%, white); }
-.schedule__swatch[data-cat="D"] { background: color-mix(in srgb, var(--blue) 10%, white); border: 1px solid var(--border); }
+.schedule__swatch[data-cat="D"] { background: color-mix(in srgb, var(--blue) 20%, white); }
 
 .schedule__legend-name {
   font-size: 0.78rem;

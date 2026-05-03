@@ -4,10 +4,10 @@ import imgTeam2 from '../assets/club-images/4985a81dab06543f9c3a2569b5a4f20a144f
 
 const teams = [
   { id: 1, name: 'Herren 1', league: 'NÖ Landesliga', description: 'Flaggschiff des Vereins – das erste Herrenteam spielt auf höchstem regionalen Niveau.', link: 'https://www.noetv.at/liga/adults/275589' },
-  { id: 2, name: 'Damen 1', league: 'Kreisliga', description: 'Unser erstes Damenteam kämpft in der Kreisliga um Punkte und Aufstieg.', link: 'https://www.noetv.at/liga/adults/275589' },
-  { id: 3, name: 'Herren 2', league: 'NÖ Landesliga', description: 'Das zweite Herrenteam mit starker Besetzung und ambitionierten Saisonzielen.', link: 'https://www.noetv.at/liga/adults/275589' },
-  { id: 4, name: 'Herren 3', league: 'Kreisliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.', link: 'https://www.noetv.at/liga/adults/275589' },
-  { id: 5, name: 'Herren 4', league: 'Kreisliga', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.', link: 'https://www.noetv.at/liga/adults/275589' },
+  { id: 2, name: 'Damen 1', league: 'Kreisliga', description: 'Unser erstes Damenteam kämpft in der Kreisliga um Punkte und Aufstieg.', link: 'https://www.noetv.at/liga/adults/284767' },
+  { id: 3, name: 'Herren 2', league: 'NÖ Landesliga', description: 'Das zweite Herrenteam mit starker Besetzung und ambitionierten Saisonzielen.', link: 'https://www.noetv.at/liga/adults/275593' },
+  { id: 4, name: 'Herren 3', league: 'Kreisliga', description: 'Solide Mannschaft mit erfahrenen Spielern und gutem Zusammenhalt.', link: 'https://www.noetv.at/liga/adults/285667' },
+  { id: 5, name: 'Herren 4', league: 'Kreisliga', description: 'Unsere vierte Herrenmannschaft – Spaß am Spiel und Teamgeist stehen im Vordergrund.', link: 'https://www.noetv.at/liga/adults/286127' },
 ]
 </script>
 
